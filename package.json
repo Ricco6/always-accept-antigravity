@@ -2,12 +2,12 @@
     "name": "auto-proceed",
     "displayName": "Auto Proceed - Automatic Command Confirmation",
     "description": "Automatically confirms command execution prompts in AI coding assistants (Antigravity, Cursor, etc.) without requiring Alt+Enter",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "icon": "icon.png",
     "publisher": "ricco6",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ricco6/always-accept-antigravity.git"
+        "url": "https://github.com/ricco6/always-accept-ag.git"
     },
     "engines": {
         "vscode": "^1.80.0"
@@ -49,6 +49,10 @@
             {
                 "command": "auto-proceed.triggerNow",
                 "title": "Auto Proceed: Trigger NOW (Manual Test)"
+            },
+            {
+                "command": "auto-proceed.smartEnter",
+                "title": "Auto Proceed: Smart Enter (Internal)"
             }
         ],
         "configuration": {
@@ -77,6 +81,12 @@
                 "key": "ctrl+shift+p",
                 "mac": "cmd+shift+p",
                 "when": "editorTextFocus"
+            },
+            {
+                "command": "auto-proceed.smartEnter",
+                "key": "enter",
+                "mac": "enter",
+                "when": "editorTextFocus && !suggestWidgetVisible && !renameInputVisible && !inDebugRepl || antigravity.isAgentModeInputBoxFocused || sideBarFocus || panelFocus"
             }
         ]
     },

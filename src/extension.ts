@@ -9,12 +9,13 @@ let isEnabled = true;
 let windowState: vscode.Memento;
 
 // EXACT Antigravity command IDs - found from package.json keybindings
+// EXACT Antigravity command IDs - verified from source manifest
 const ANTIGRAVITY_ACCEPT_COMMANDS = [
     'antigravity.agent.acceptAgentStep',
     'antigravity.terminalCommand.accept',
     'antigravity.prioritized.agentAcceptFocusedHunk',
     'antigravity.command.accept',
-    'antigravity.terminalCommand.run',
+    'antigravity.terminalCommand.run'
 ];
 
 export function activate(context: vscode.ExtensionContext) {
@@ -48,6 +49,50 @@ export function activate(context: vscode.ExtensionContext) {
         startAutoProceeding();
     }
     updateStatusBar();
+
+    // --- GENIUS FEATURE: Smart Focus & Keybindings ---
+
+    // 1. When focus moves to Terminal -> Auto ON (Assume execution time)
+    context.subscriptions.push(
+        vscode.window.onDidChangeActiveTerminal((term) => {
+            if (term) {
+                console.log('Terminal focused -> Auto Proceed ON');
+                setAutoProceed(true);
+            }
+        })
+    );
+
+    // 2. When focus moves to Chat/Sidebars (Active Editor becomes undefined) -> Auto OFF
+    context.subscriptions.push(
+        vscode.window.onDidChangeActiveTextEditor((editor) => {
+            if (!editor) {
+                // Focus likely in Chat, Sidebar, or Panel
+                console.log('Editor focus lost (Chat?) -> Auto Proceed OFF');
+                setAutoProceed(false);
+            } else {
+                // Returned to code -> Auto Proceed ON
+                console.log('Editor focus regained -> Auto Proceed ON');
+                setAutoProceed(true);
+            }
+        })
+    );
+
+    // 3. Register "Smart Enter" command
+    // Use this in keybindings.json: { "key": "enter", "command": "auto-proceed.smartEnter", "when": "editorTextFocus || antigravity.isAgentModeInputBoxFocused" }
+    context.subscriptions.push(
+        vscode.commands.registerCommand('auto-proceed.smartEnter', async () => {
+            console.log('Smart Enter triggered');
+
+            // Enable Auto-Proceed
+            if (!isEnabled) {
+                setAutoProceed(true);
+            }
+
+            // Pass-through Enter (insert newline)
+            // This attempts to preserve default behavior (newlines in editor, or typing \n in chat)
+            await vscode.commands.executeCommand('default:type', { text: '\n' });
+        })
+    );
 }
 
 function toggleAutoProceed() {

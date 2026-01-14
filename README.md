@@ -13,7 +13,7 @@ Automatically confirms command execution prompts in AI coding assistants (Antigr
 [Download here](https://marketplace.visualstudio.com/items?itemName=ricco6.auto-proceed)
 
 ### Manual Installation
-1. Download the latest `.vsix` file from the [Releases page](https://github.com/ricco6/always-accept-antigravity/releases).
+1. Download the latest `.vsix` file from the [Releases page](https://github.com/ricco6/always-accept-ag/releases).
 2. Drag and drop the file into your editor's Extensions view.
 3. Reload the window.
 
@@ -28,4 +28,4 @@ This allows the AI to run commands automatically. Use responsibly.
 
 ## License
 
-MIT License - See [LICENSE](https://github.com/ricco6/always-accept-antigravity/blob/master/LICENSE) for details.
+MIT License - See [LICENSE](https://github.com/ricco6/always-accept-ag/blob/master/LICENSE) for details.
