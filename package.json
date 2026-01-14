@@ -1,0 +1,95 @@
+{
+    "name": "auto-proceed",
+    "displayName": "Auto Proceed - Automatic Command Confirmation",
+    "description": "Automatically confirms command execution prompts in AI coding assistants (Antigravity, Cursor, etc.) without requiring Alt+Enter",
+    "version": "1.0.0",
+    "icon": "icon.png",
+    "publisher": "ricco6",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ricco6/always-accept-antigravity.git"
+    },
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "license": "MIT",
+    "keywords": [
+        "auto-confirm",
+        "auto-proceed",
+        "antigravity",
+        "cursor",
+        "ai-assistant"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "auto-proceed.toggle",
+                "title": "Auto Proceed: Toggle On/Off"
+            },
+            {
+                "command": "auto-proceed.enable",
+                "title": "Auto Proceed: Enable"
+            },
+            {
+                "command": "auto-proceed.disable",
+                "title": "Auto Proceed: Disable"
+            },
+            {
+                "command": "auto-proceed.listCommands",
+                "title": "Auto Proceed: List All Available Commands (Debug)"
+            },
+            {
+                "command": "auto-proceed.refreshCommands",
+                "title": "Auto Proceed: Refresh Command Discovery"
+            },
+            {
+                "command": "auto-proceed.triggerNow",
+                "title": "Auto Proceed: Trigger NOW (Manual Test)"
+            }
+        ],
+        "configuration": {
+            "title": "Auto Proceed",
+            "properties": {
+                "autoProceed.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable automatic command confirmation"
+                },
+                "autoProceed.intervalMs": {
+                    "type": "number",
+                    "default": 1500,
+                    "description": "Interval in milliseconds between auto-proceed attempts"
+                },
+                "autoProceed.showNotifications": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Show notifications when auto-proceed triggers"
+                }
+            }
+        },
+        "keybindings": [
+            {
+                "command": "auto-proceed.toggle",
+                "key": "ctrl+shift+p",
+                "mac": "cmd+shift+p",
+                "when": "editorTextFocus"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "package": "npx vsce package --allow-missing-repository"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.0",
+        "@types/vscode": "^1.80.0",
+        "typescript": "^5.0.0",
+        "@vscode/vsce": "^2.22.0"
+    }
+}
