@@ -14,7 +14,7 @@ You can still write text while the toggle is ON; meaning leaving it always ON is
 [Download here](https://marketplace.visualstudio.com/items?itemName=ricco6.auto-proceed)
 
 ### Manual Installation
-1. Download the latest `.vsix` file from the [Releases page](https://github.com/ricco6/always-accept-ag/releases).
+1. Download the latest `.vsix` file from the [Releases page](https://github.com/Ricco6/always-accept-antigravity/releases).
 2. Drag and drop the file into your editor's Extensions view.
 3. Reload the window.
 
