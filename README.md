@@ -2,7 +2,8 @@
 
 Marketplace extension link: https://marketplace.visualstudio.com/items?itemName=ricco6.auto-proceed
 
-Automatically confirms command execution prompts in AI coding assistants (Antigravity, Cursor) so you don't have to press Alt+Enter.
+Automatically confirms command execution prompts in Antigravity so you don't have to click/press Alt+Enter.
+You can still write text while the toggle is ON; so you can basically just always leave it ON and it's fine.
 
 ![Screenshot 1](images/screenshot1.png)
 ![Screenshot 2](images/screenshot2.png)
